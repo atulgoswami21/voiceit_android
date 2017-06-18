@@ -22,7 +22,7 @@ To use this SDK in your Android Project, if you haven't already, please Sign Up 
 
 ## Usage
 
-To user the Android SDK add the following to your root build.gradle at the end of repositories
+Add the following to your root build.gradle at the end of repositories
 ```Groovy
 allprojects {
   repositories {
@@ -51,7 +51,7 @@ In order to use VoiceIt inside of your Android apps make sure you have the follo
 
 ## API Calls
 
-Here are code snippets that show you how you can call the Various VoiceIt API Calls inside of your Cordova Project JavaScript Files.
+Here are code snippets that show you how you can call the Various VoiceIt API Calls inside of your Android project files.
 
 ### Initialization
 
@@ -63,12 +63,17 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 import io.voiceit.voiceit.VoiceIt;
 
-final VoiceIt myVoiceIt = new VoiceIt("DEVELOPER_ID_HERE");
-```
+public class MainActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        final VoiceIt myVoiceIt = new VoiceIt("DEVELOPER_ID_HERE");
+    }
+```
 ### Create User
 
-To create a new user call the createUser function like this with the following parameters: developerId, userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
+To create a new user call the createUser function like this with the following parameters: userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
 
 ```java
 myVoiceIt.createUser("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler() {
@@ -88,7 +93,7 @@ myVoiceIt.createUser("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler
 ```
 ### Get User
 
-To get an existing user call the getUser function like this with the following parameters: developerId, userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
+To get an existing user call the getUser function like this with the following parameters: userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
 
 
 ```java
@@ -109,7 +114,7 @@ myVoiceIt.getUser("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler() 
 ```
 ### Delete User
 
-To delete an existing user call the deleteUser function like this with the following parameters: developerId, userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
+To delete an existing user call the deleteUser function like this with the following parameters: userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
 
 ```java
 myVoiceIt.deleteUser("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler() {
@@ -129,7 +134,7 @@ myVoiceIt.deleteUser("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler
 ```
 ### Create Enrollment
 
-To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerId, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and content language.
+To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and content language.
 
 Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt, it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
@@ -153,7 +158,7 @@ myVoiceIt.createEnrollment("developerUserId","d0CHipUXOk", "en-US", new JsonHttp
 ```
 ### Get Enrollments
 
-To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerId, userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
+To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you)
 
 ```java
 myVoiceIt.getEnrollments("developerUserId","d0CHipUXOk", new JsonHttpResponseHandler() {
@@ -173,7 +178,7 @@ myVoiceIt.getEnrollments("developerUserId","d0CHipUXOk", new JsonHttpResponseHan
 ```
 ### Delete Enrollment
 
-To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerId, userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you), and enrollmentId
+To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: userId, password(not encrypted, just in text form, the plugin encrypts the password using SHA256 for you), and enrollmentId
 
 ```java
 myVoiceIt.deleteEnrollment("developerUserId","d0CHipUXOk", 123456, new JsonHttpResponseHandler() {
@@ -194,7 +199,7 @@ myVoiceIt.deleteEnrollment("developerUserId","d0CHipUXOk", 123456, new JsonHttpR
 
 ### Authentication
 
-To authentication a specified user profile use the authentication function like this with the following parameters: developerId, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and content language.
+To authentication a specified user profile use the authentication function like this with the following parameters: userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and content language.
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt, it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call with the audio file.
 
