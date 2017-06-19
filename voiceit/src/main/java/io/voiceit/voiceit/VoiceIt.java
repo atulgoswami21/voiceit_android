@@ -4,7 +4,6 @@ package io.voiceit.voiceit;
  * Created by armaanbindra on 6/16/17.
  */
 
-
         import java.io.File;
         import java.io.FileInputStream;
         import java.io.FileNotFoundException;
@@ -30,6 +29,7 @@ public class VoiceIt {
     private static final String BASE_URL = "https://siv.voiceprintportal.com/sivservice/api";
     private AsyncHttpClient aSyncClient;
     private String developerId;
+    private String platformId = "25";
 
     private String GetSHA256(String data) {
         try {
@@ -62,6 +62,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("VsitDeveloperId", this.developerId);
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.post(getAbsoluteUrl("/users"), null, responseHandler);
     }
 
@@ -70,6 +71,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("VsitDeveloperId", this.developerId);
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.get(getAbsoluteUrl("/users"), null, responseHandler);
     }
 
@@ -78,6 +80,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("VsitDeveloperId", this.developerId);
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.delete(getAbsoluteUrl("/users"), null, responseHandler);
     }
 
@@ -86,6 +89,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("VsitDeveloperId", this.developerId);
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.get(getAbsoluteUrl("/enrollments"), null, responseHandler);
     }
 
@@ -95,6 +99,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VppText", vppText);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.get(getAbsoluteUrl("/enrollments/count"), null, responseHandler);
     }
 
@@ -103,6 +108,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("VsitDeveloperId", this.developerId);
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
         this.aSyncClient.delete(getAbsoluteUrl("/enrollments/" + enrollmentId.toString()), null, responseHandler);
     }
 
@@ -112,6 +118,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("ContentLanguage", contentLanguage);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
 
         try{
             final File file =  File.createTempFile("tempfile", ".wav");
@@ -174,6 +181,7 @@ public class VoiceIt {
         this.aSyncClient.addHeader("UserId", userId);
         this.aSyncClient.addHeader("ContentLanguage", contentLanguage);
         this.aSyncClient.addHeader("VsitPassword", GetSHA256(password));
+        this.aSyncClient.addHeader("PlatformID", this.platformId);
 
         try {
             final File file = File.createTempFile("tempfile", ".wav");

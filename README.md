@@ -35,7 +35,7 @@ allprojects {
 Then add the VoiceIt Android SDK as a dependency in the android/app/build.gradle
 ```Groovy
 dependencies {
-        compile 'com.github.voiceittech:voiceit_android:1.0.0'
+        compile 'com.github.voiceittech:voiceit_android:1.0.1'
 }
 ```
 
